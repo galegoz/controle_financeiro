@@ -14,6 +14,7 @@ import 'presentation/providers/transaction_provider.dart';
 import 'presentation/pages/dashboard/dashboard_page.dart';
 import 'presentation/pages/history/history_page.dart';
 import 'presentation/pages/reports/reports_tab_page.dart';
+import 'presentation/pages/settings/settings_page.dart';
 import 'presentation/pages/transaction/transaction_form_page.dart';
 
 void main() async {
@@ -77,7 +78,6 @@ class _AppShellState extends State<AppShell> {
     setState(() => _currentIndex = index);
   }
 
-  // Páginas serão preenchidas nas próximas fases
   late final List<Widget> _pages;
 
   @override
@@ -88,7 +88,7 @@ class _AppShellState extends State<AppShell> {
       const TransactionFormPage(),
       const HistoryPage(),
       const ReportsTabPage(),
-      const Scaffold(body: Center(child: Text('Configurações\n(em breve)', textAlign: TextAlign.center))),
+      const SettingsPage(),
     ];
   }
 
