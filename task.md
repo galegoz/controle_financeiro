@@ -1,0 +1,28 @@
+# Tarefas do Projeto - Controle Pessoal (Flutter)
+
+- `[x]` **Fase 1: Configuração Inicial e Arquitetura**
+  - `[x]` Criar projeto Flutter.
+  - `[x]` Configurar estrutura de pastas (core, data, domain, presentation).
+  - `[x]` Configurar dependências principais (`sqflite`, gerência de estado, `google_fonts`, `fl_chart`).
+  - `[x]` Implementar design system básico (Temas, Cores, Tipografia).
+- `[ ]` **Fase 2: Banco de Dados e Modelagem**
+  - `[ ]` Modelar entidades `Transaction` e `Settings`.
+  - `[ ]` Criar `DatabaseHelper` para gerenciar conexão SQLite.
+  - `[ ]` Implementar repositórios (CRUD de movimentações e configurações).
+- `[ ]` **Fase 3: Cadastro e Histórico de Movimentações**
+  - `[ ]` Criar tela/formulário "Nova Movimentação".
+  - `[ ]` Implementar salvamento, edição e exclusão.
+  - `[ ]` Criar tela "Histórico Financeiro" com listas e filtros (data, tipo, pesquisa).
+- `[ ]` **Fase 4: Dashboard e Controle de Orçamento**
+  - `[ ]` Implementar cálculos agregados (saldo, totais do mês).
+  - `[ ]` Criar componente visual de limite mensal (progress bar com mudança de cor).
+  - `[ ]` Adicionar gráficos de evolução.
+  - `[ ]` Integrar lógica de alertas de orçamento excedido.
+- `[ ]` **Fase 5: Relatórios e Indicadores**
+  - `[ ]` Desenvolver tela de Indicadores Financeiros (gastos por método de pagamento, maior despesa).
+  - `[ ]` Criar insights automáticos.
+  - `[ ]` Desenvolver exportação em CSV, XLSX e PDF.
+- `[ ]` **Fase 6: Configurações e Refinamento**
+  - `[ ]` Criar tela de Configurações (limite, tema, moeda).
+  - `[ ]` Implementar "Backup" em PDF.
+  - `[ ]` Refinamento final (UI/UX).
