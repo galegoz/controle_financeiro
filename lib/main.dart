@@ -12,8 +12,8 @@ import 'presentation/providers/settings_provider.dart';
 import 'presentation/providers/theme_provider.dart';
 import 'presentation/providers/transaction_provider.dart';
 import 'presentation/pages/dashboard/dashboard_page.dart';
-
 import 'presentation/pages/history/history_page.dart';
+import 'presentation/pages/reports/reports_tab_page.dart';
 import 'presentation/pages/transaction/transaction_form_page.dart';
 
 void main() async {
@@ -87,7 +87,7 @@ class _AppShellState extends State<AppShell> {
       const DashboardPage(),
       const TransactionFormPage(),
       const HistoryPage(),
-      const Scaffold(body: Center(child: Text('Relatórios\n(em breve)', textAlign: TextAlign.center))),
+      const ReportsTabPage(),
       const Scaffold(body: Center(child: Text('Configurações\n(em breve)', textAlign: TextAlign.center))),
     ];
   }
