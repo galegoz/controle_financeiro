@@ -1,4 +1,4 @@
-import '../../entities/transaction_entity.dart';
+import '../entities/transaction_entity.dart';
 
 abstract class TransactionRepository {
   Future<List<TransactionEntity>> getTransactions();

@@ -5,8 +5,14 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'core/theme/app_theme.dart';
+import 'data/datasources/local/database_helper.dart';
+import 'data/repositories/transaction_repository_impl.dart';
 import 'presentation/providers/theme_provider.dart';
+import 'presentation/providers/transaction_provider.dart';
 import 'presentation/pages/dashboard/dashboard_page.dart';
+
+import 'presentation/pages/history/history_page.dart';
+import 'presentation/pages/transaction/transaction_form_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,11 +27,14 @@ void main() async {
   ]);
 
   final prefs = await SharedPreferences.getInstance();
+  final dbHelper = DatabaseHelper.instance;
+  final transactionRepository = TransactionRepositoryImpl(dbHelper);
 
   runApp(
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => ThemeProvider(prefs)),
+        ChangeNotifierProvider(create: (_) => TransactionProvider(transactionRepository)),
       ],
       child: const ControleApp(),
     ),
@@ -68,8 +77,8 @@ class _AppShellState extends State<AppShell> {
     super.initState();
     _pages = [
       const DashboardPage(),
-      const Scaffold(body: Center(child: Text('Nova Movimentação\n(em breve)', textAlign: TextAlign.center))),
-      const Scaffold(body: Center(child: Text('Histórico\n(em breve)', textAlign: TextAlign.center))),
+      const TransactionFormPage(),
+      const HistoryPage(),
       const Scaffold(body: Center(child: Text('Relatórios\n(em breve)', textAlign: TextAlign.center))),
       const Scaffold(body: Center(child: Text('Configurações\n(em breve)', textAlign: TextAlign.center))),
     ];
