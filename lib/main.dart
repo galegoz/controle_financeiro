@@ -6,7 +6,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'core/theme/app_theme.dart';
 import 'data/datasources/local/database_helper.dart';
+import 'data/repositories/settings_repository_impl.dart';
 import 'data/repositories/transaction_repository_impl.dart';
+import 'presentation/providers/settings_provider.dart';
 import 'presentation/providers/theme_provider.dart';
 import 'presentation/providers/transaction_provider.dart';
 import 'presentation/pages/dashboard/dashboard_page.dart';
@@ -29,12 +31,14 @@ void main() async {
   final prefs = await SharedPreferences.getInstance();
   final dbHelper = DatabaseHelper.instance;
   final transactionRepository = TransactionRepositoryImpl(dbHelper);
+  final settingsRepository = SettingsRepositoryImpl(dbHelper);
 
   runApp(
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => ThemeProvider(prefs)),
         ChangeNotifierProvider(create: (_) => TransactionProvider(transactionRepository)),
+        ChangeNotifierProvider(create: (_) => SettingsProvider(settingsRepository)),
       ],
       child: const ControleApp(),
     ),
@@ -68,6 +72,10 @@ class AppShell extends StatefulWidget {
 
 class _AppShellState extends State<AppShell> {
   int _currentIndex = 0;
+
+  void navigateToTab(int index) {
+    setState(() => _currentIndex = index);
+  }
 
   // Páginas serão preenchidas nas próximas fases
   late final List<Widget> _pages;
