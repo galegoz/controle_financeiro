@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentação - Controle Pessoal</title>
+    <style>
+        :root {
+            --primary-color: #2E7D32;
+            --secondary-color: #4CAF50;
+            --background-color: #f5f7fa;
+            --text-color: #333333;
+            --light-text: #666666;
+            --card-bg: #ffffff;
+            --border-color: #e0e0e0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        section {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-color);
+        }
+
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        h3 {
+            color: #444;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--light-text);
+        }
+
+        ul {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--light-text);
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        .architecture-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .layer-card {
+            background-color: #f9fafb;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+
+        .layer-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .layer-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .layer-title {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+        }
+
+        .feature-list {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+            background: #fff;
+            padding: 1rem;
+            border-left: 4px solid var(--primary-color);
+            border-radius: 0 4px 4px 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .feature-icon {
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            color: var(--primary-color);
+        }
+
+        .feature-content h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+            color: var(--text-color);
+        }
+
+        .feature-content p {
+            margin-bottom: 0;
+            font-size: 0.95rem;
+        }
+
+        code {
+            background-color: #f1f3f5;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: monospace;
+            color: #d81b60;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--light-text);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Controle Pessoal</h1>
+        <p>Documentação Oficial de Arquitetura e Funcionalidades</p>
+    </header>
+
+    <main>
+        <!-- Introdução -->
+        <section>
+            <h2>Sobre o Aplicativo</h2>
+            <p>O <strong>Controle Pessoal</strong> é um aplicativo robusto de gestão financeira desenvolvido em Flutter. O foco principal do projeto é garantir organização, desempenho e facilidade na manutenção e na escalabilidade do código. Para alcançar isso, todo o projeto foi estruturado seguindo os princípios de <strong>Clean Architecture</strong>, com uso do <strong>Provider</strong> para injeção de dependências e gerência de estado, e persistência local através do <strong>SQLite</strong>.</p>
+        </section>
+
+        <!-- Arquitetura -->
+        <section>
+            <h2>Arquitetura do Projeto (Clean Architecture)</h2>
+            <p>A separação de responsabilidades é essencial para o desenvolvimento sustentável a longo prazo. O código fonte está dividido nas seguintes camadas principais dentro do diretório <code>lib/</code>:</p>
+            
+            <div class="architecture-grid">
+                <div class="layer-card">
+                    <div class="layer-icon">⚙️</div>
+                    <div class="layer-title">Core</div>
+                    <p style="font-size: 0.85rem;">Contém lógicas transversais, constantes, temas, formatações de moedas e datas, e paleta de cores (Design System).</p>
+                </div>
+                <div class="layer-card">
+                    <div class="layer-icon">📦</div>
+                    <div class="layer-title">Domain</div>
+                    <p style="font-size: 0.85rem;">O coração da regra de negócio. Possui as Entidades (<i>TransactionEntity</i>, <i>SettingsEntity</i>) e os contratos/interfaces de Repositórios.</p>
+                </div>
+                <div class="layer-card">
+                    <div class="layer-icon">💾</div>
+                    <div class="layer-title">Data</div>
+                    <p style="font-size: 0.85rem;">Responsável pela persistência. Contém os Modelos de Banco (conversão de JSON/Map), as implementações dos Repositórios e o <i>DatabaseHelper</i> do SQLite.</p>
+                </div>
+                <div class="layer-card">
+                    <div class="layer-icon">🎨</div>
+                    <div class="layer-title">Presentation</div>
+                    <p style="font-size: 0.85rem;">Tudo relacionado à interface visual (UI) e estado. Contém Widgets genéricos, Páginas e os Providers (<i>TransactionProvider</i>, <i>SettingsProvider</i>, etc).</p>
+                </div>
+            </div>
+            
+            <h3>Fluxo de Dados</h3>
+            <p>O fluxo de dados no aplicativo segue o modelo de via única:</p>
+            <ul>
+                <li>A UI (<strong>Presentation</strong>) solicita uma ação chamando métodos nos <strong>Providers</strong>.</li>
+                <li>O Provider invoca as funções do Repositório (<strong>Domain</strong>).</li>
+                <li>A implementação do Repositório (<strong>Data</strong>) faz chamadas ao SQLite (<strong>DatabaseHelper</strong>), que mapeia a resposta para Entidades, e a devolve ao Provider.</li>
+                <li>O Provider notifica seus ouvintes (listeners), resultando na reconstrução reativa da Interface do Usuário.</li>
+            </ul>
+        </section>
+
+        <!-- Funcionalidades -->
+        <section>
+            <h2>Principais Funcionalidades</h2>
+            <p>O aplicativo oferece um controle financeiro do zero ao nível avançado. Aqui estão as funcionalidades entregues:</p>
+            
+            <ul class="feature-list">
+                <li class="feature-item">
+                    <div class="feature-icon">📊</div>
+                    <div class="feature-content">
+                        <h4>Dashboard Inteligente</h4>
+                        <p>Visão geral instantânea que calcula as receitas e despesas correntes do mês, exibe o Saldo em tempo real, mostra um gráfico de pizza para comparação das entradas/saídas e fornece as movimentações mais recentes.</p>
+                    </div>
+                </li>
+                <li class="feature-item">
+                    <div class="feature-icon">🚨</div>
+                    <div class="feature-content">
+                        <h4>Controle de Orçamento (Progress Bar Visual)</h4>
+                        <p>Acompanhe o limite mensal que você se propôs a gastar. A barra interage visualmente mudando de verde para amarelo e depois para vermelho conforme o limite definido for alcançado ou excedido.</p>
+                    </div>
+                </li>
+                <li class="feature-item">
+                    <div class="feature-icon">💳</div>
+                    <div class="feature-content">
+                        <h4>Cadastro Completo de Movimentações</h4>
+                        <p>Formulários modernos e validados para o registro de Receitas ou Despesas. Inclui Data personalizada, Campo de Valor monetário, Tipo, Descrição e seleção da Forma de Pagamento.</p>
+                    </div>
+                </li>
+                <li class="feature-item">
+                    <div class="feature-content">
+                        <div class="feature-icon">🔍</div>
+                        <h4>Histórico com Pesquisa Dinâmica</h4>
+                        <p>Filtre o histórico por "Despesas", "Receitas", ou pesquise pelo nome da movimentação para consultar os lançamentos antigos de forma instantânea.</p>
+                    </div>
+                </li>
+                <li class="feature-item">
+                    <div class="feature-content">
+                        <div class="feature-icon">📈</div>
+                        <h4>Relatórios, Gráficos e Insights</h4>
+                        <p>Geração de relatórios por período personalizado. O aplicativo fornece um Gráfico de Barras com a evolução de entradas e saídas dos últimos 6 meses, além de apresentar "Insights Automáticos" baseados no comportamento do usuário (ex: "Você gastou X% a mais que no mês anterior").</p>
+                    </div>
+                </li>
+                <li class="feature-item">
+                    <div class="feature-content">
+                        <div class="feature-icon">📤</div>
+                        <h4>Exportação e Backup (PDF, Excel e CSV)</h4>
+                        <p>As informações são 100% suas. Você pode exportar relatórios customizados no formato PDF, XLSX ou CSV para serem compartilhados (via e-mail, WhatsApp, etc). Na aba configurações, é possível realizar o Backup em PDF de toda a sua base de dados.</p>
+                    </div>
+                </li>
+                <li class="feature-item">
+                    <div class="feature-content">
+                        <div class="feature-icon">⚙️</div>
+                        <h4>Personalização Global</h4>
+                        <p>Através do gerenciamento central de ThemeProvider e SharedPreferences, o usuário pode escolher entre o Tema Claro, Escuro ou do Sistema; definir a moeda de sua preferência (BRL, USD, EUR) e editar o orçamento base.</p>
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Bibliotecas e Ferramentas -->
+        <section>
+            <h2>Bibliotecas e Ferramentas Utilizadas</h2>
+            <ul>
+                <li><strong>Flutter SDK:</strong> Framework base multiplataforma.</li>
+                <li><strong>Provider:</strong> Gerenciamento de Estado flexível, reativo e otimizado.</li>
+                <li><strong>sqflite:</strong> Gerenciamento e persistência no banco de dados SQLite local.</li>
+                <li><strong>fl_chart:</strong> Desenho e plotagem de Gráficos de Pizza e Barras (Altamente customizável).</li>
+                <li><strong>shared_preferences:</strong> Armazenamento de dados leves, como temas e configurações simples.</li>
+                <li><strong>pdf / excel / csv:</strong> Manipulação de arquivos para exportação dos dados contábeis.</li>
+                <li><strong>share_plus:</strong> Integração com sistema operacional para compartilhamento dos relatórios gerados.</li>
+                <li><strong>google_fonts:</strong> Integração dinâmica de fontes otimizadas.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Controle Pessoal - Arquitetura de Software | Flutter</p>
+    </footer>
+
+</body>
+</html>
